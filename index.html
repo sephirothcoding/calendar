@@ -1,349 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" data-lt-installed="true">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calendar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
             font-family: 'Source Sans Pro', sans-serif;
             background-color: #f0f0f0;
+            color: #333;
         }
 
         .container {
             display: flex;
-            flex-wrap: wrap;
-            background-color: #f0f0f0;
-            justify-content: center;
-        }
-
-        .all-txt{
-            width: 90%;
-        }
-
-        .wrapper{
-            width: 450px;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .wrapper-sched {
-            margin-top: 50px;
-            text-align: center;
-            padding: 50px;
+            flex-direction: column;
+            align-items: center;
             padding-top: 50px;
-            border-radius: 3%;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .wrapper header{
-            display: flex;
-            align-items: center;
-            padding: 25px 30px 0px;
-            justify-content: space-around;
+        .month {
+            margin-bottom: 30px;
         }
 
-        header span{
-            height: 30px;
-            width: 30px;
-            margin: 0;
-            cursor: pointer;
-            color: #878787;
-            line-height: 38px;
-            font-size: 1.1rem;
-            user-select: none;
-            border-radius: 50%;
-            background-color: #008;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header .curr-date{
-            font-size: 1.45rem;
-            font-weight: 600;
-            color: #008;
-        }
-
-        .calendar{
-            padding: 20px;
-            padding-bottom: 10px;
-        }
-
-        .calendar ul{
-            list-style-type: none;
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .calendar li{
-            padding: 10px;
-            width:  30px;
-            font-size: 1.07rem;
-        }
-
-        .calendar .days{
-            margin-bottom: 10px;
-        }
-
-        .calendar .weeks li{
-            font-weight: 600;
-        }
-
-        .calendar .days li{
-            z-index: 1;
-            cursor: pointer;
-            position: relative;
-            margin-top: 10px;
-        }
-
-        .days li::before {
-            position: absolute;
-            content: "";
-            left: 50%;
-            top: 50%;
-            height: 40px;
-            width: 40px;
-            z-index: -1;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .days li.inactive{
-            color: #aaa;
-        }
-        
-        .days li.active{
-            color: #fff;
-        }
-
-        .days li.active::before{
-            background:  #90ee90;
-        }
-        .days li:not(.active):hover::before{
-            background: #f2f2f2;
-        }
-
-        .slot.weeks {
-            list-style-type: none;
-            display: flex;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .slot.weeks li { 
-            padding-left: 5px;
-            padding-right: 55px;
-            margin: 0;
-            text-align: center;
+        .month img {
             width: 100px;
-        }
-
-        .slot.weeks p {
-            margin: 0;
-            margin-top: 3px;
-        }
-
-        .slot-time {
-            display: flex;
-            padding-left: 50px;
-        }
-
-        .time {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            font-size: 1.07rem;
-        }
-
-        .time li {
-            width: 70px;
-            background-color: #90ee90;
-            margin-right: 10px;
+            height: auto;
             margin-bottom: 10px;
-            padding: 20px;
-            border-radius: 10px;
         }
 
-        .time li:hover{
-            background-color: #c3f550;
+        .month-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .book{
-            padding: 80px;
+        .event {
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            margin: 10px;
         }
 
-        .book input{
-            margin: 10px 0px;
-            padding: 10px;
-            width: 80%;
+        .event img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 5px;
         }
 
-        .book textarea{
-            margin: 10px 0px;
-            width: 83%;
-            height: 90px;
-        }
-
-        .book form{
-            width: 480px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-
-        .book button{
-            padding: 20px;
-            border: none;
-            border-radius: 5px;
-            margin-right: 10px;
-            width: 200px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            background-color: #008;
-            color: #fff;
-        }
-
-        #btn-book{
-            background-color: #32cd32;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .all-cont{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        .event-name {
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="all-cont">
-        <div class="all-txt">
-            <header>
-                <img src="https://images5.alphacoders.com/135/thumb-1920-1354013.png" alt="" height="200px" width="100%" ;="" style="object-fit:cover">
-            </header>
-            <div class="container">
-                <div class="wrapper">
-                    <header>
-                        <span class="prevNext" id="prev"><i class="fas fa-chevron-left"></i></span>
-                        <p class="curr-date">May 2024</p>
-                        <span class="prevNext" id="next"><i class="fas fa-chevron-right"></i></span>
-                    </header>
-                    <div class="calendar">
-                        <ul class="weeks">
-                            <li>Sun</li>
-                            <li>Mon</li>
-                            <li>Tue</li>
-                            <li>Wed</li>
-                            <li>Thu</li>
-                            <li>Fri</li>
-                            <li>Sat</li>
-                        </ul>
-                        <ul class="days">
-                            <!-- Days will be dynamically generated -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="wrapper-sched">
-                    <div class="sched-slot">
-                        <ul class="slot weeks"></ul>
-                    </div>
-                    <div class="slot-time">
-                        <ul class="time">
-                            <li>namegrad</li>
-                            <li>namecolor</li>
-                            <li>11:00AM</li>
-                            <li>2:00PM</li>
-                        </ul>
-                        <ul class="time">
-                            <li>9:30AM</li>
-                            <li>10:30AM</li>
-                            <li>12:00PM</li>
-                            <li>2:30PM</li>
-                        </ul>
-                        <ul class="time">
-                            <li>9:45AM</li>
-                            <li>10:50AM</li>
-                            <li>12:30AM</li>
-                            <li>3:00PM</li>
-                        </ul>
-                        <ul class="time">
-                            <li>10:00AM</li>
-                            <li>11:10AM</li>
-                            <li>1:00PM</li>
-                            <li>3:30PM</li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="month">
+            <div class="month-name">January</div>
+            <div class="event">
+                <img src="example.jpg" alt="Event 1">
+                <div class="event-name">Event 1</div>
             </div>
-            <div class="book">
-                <!-- Form for booking -->
+            <div class="event">
+                <img src="example.jpg" alt="Event 2">
+                <div class="event-name">Event 2</div>
             </div>
+            <!-- Add more events for January if needed -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">February</div>
+            <!-- Add events for February -->
+        </div>
+
+        <!-- Repeat the structure for the other months -->
+        <div class="month">
+            <div class="month-name">March</div>
+            <!-- Add events for March -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">April</div>
+            <!-- Add events for April -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">May</div>
+            <!-- Add events for May -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">June</div>
+            <!-- Add events for June -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">July</div>
+            <!-- Add events for July -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">August</div>
+            <!-- Add events for August -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">September</div>
+            <!-- Add events for September -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">October</div>
+            <!-- Add events for October -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">November</div>
+            <!-- Add events for November -->
+        </div>
+
+        <div class="month">
+            <div class="month-name">December</div>
+            <!-- Add events for December -->
         </div>
     </div>
-    <script>
-        const days = document.querySelector(".days");
-        const currentDate = document.querySelector(".curr-date");
-        const prevNext = document.querySelectorAll(".prevNext");
-
-        let date = new Date();
-        let currYear = date.getFullYear();
-        let currMonth = date.getMonth();
-
-        const months = ["January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December"];
-
-        const newCalendar = () => {
-            let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay();
-            let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate();
-            let lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay();
-            let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
-            let liTag = "";
-
-            for (let i = firstDayOfMonth; i > 0; i--) {
-                liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
-            }
-
-            for (let i = 1; i <= lastDateOfMonth; i++) {
-                let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
-                liTag += `<li class="${isToday}">${i}</li>`;
-            }
-
-            for (let i = lastDayOfMonth; i < 6; i++) {
-                liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
-            }
-
-            currentDate.innerText = `${months[currMonth]} ${currYear}`;
-            days.innerHTML = liTag;
-        }
-
-        newCalendar();
-
-        prevNext.forEach(icon => {
-            icon.addEventListener("click", () => {
-                currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
-
-                if (currMonth < 0 || currMonth > 11) {
-                    date = new Date(currYear, currMonth, new Date().getDate());
-                    currYear = date.getFullYear();
-                    currMonth = date.getMonth();
-                } else {
-                    date = new Date();
-                }
-                newCalendar();
-            });
-        });
-    </script>
 </body>
 </html>
