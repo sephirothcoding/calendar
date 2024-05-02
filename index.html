@@ -1,81 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calendar cu elemente</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-
-    .calendar {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .month {
-      width: 200px;
-      margin: 20px;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-
-    .items {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .item {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .item img {
-      max-width: 80px;
-      max-height: 80px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-  <div class="calendar">
-    <div class="month" id="january">
-      <h2>January</h2>
-      <div class="items" id="january-items"></div>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: 'Source Sans Pro', sans-serif;
+
+            
+        }
+
+        .navbar{
+            
+            display: inline-block;
+            max-width: 500px;
+            width: 200px;
+            height: auto;
+            background-color: #192734;
+            color: white;
+        }
+        .nav{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        
+
+        .nav li{ 
+    
+            padding: 30px 20px 30px;
+            border-bottom: 1px solid #bfbfbf;
+            font-size: 20px;
+        }
+
+        
+
+        #menu{
+            font-size: 25px;
+            border-bottom: none;
+            background-color: #15202b;
+            padding: 10px;
+            padding-left: 20px;
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #f9efff;
+            justify-content: center;
+            
+            
+        }
+
+
+        .all-txt{
+            width: 90%;
+            
+        }
+
+        .wrapper{
+            width: 450px;
+            margin-top: 20px;
+        }
+
+        .wrapper-sched {
+            margin-top: 50px;
+            text-align: center;
+            padding: 50px;
+            padding-top: 50px;
+           
+            border-radius: 3%;
+        }
+
+
+        .wrapper header{
+            display: flex;
+            align-items: center;
+            padding: 25px 30px 0px;
+            justify-content: space-around;
+        }
+
+        header span{
+            height: 30px;
+            width: 0px;
+            margin: 0;
+            cursor: pointer;
+            color: #878787;
+            line-height: 38px;
+            font-size: 1.1rem;
+            user-select: none;
+            border-radius: 50%;
+        }
+
+        header .curr-date{
+            font-size: 1.45rem;
+            font-weight: 600;
+            
+        }
+
+        .calendar{
+            
+            padding: 20px;
+          padding-bottom: 10px;
+            
+        }
+
+        .calendar ul{
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .calendar li{
+            padding: 10px;
+            width:  30px;
+            font-size: 1.07rem;
+        }
+
+        .calendar .days{
+            margin-bottom: 10px;
+        }
+
+        .calendar .weeks li{
+            font-weight: 600;
+        }
+
+        .calendar .days li{
+            z-index: 1;
+            cursor: pointer;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .days li::before {
+            position: absolute;
+            content: "";
+            left: 50%;
+            top: 50%;
+            height: 40px;
+            width: 40px;
+            z-index: -1;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .days li.inactive{
+            color: #aaa;
+        }
+        
+        .days li.active{
+            color: #fff;
+        }
+
+        .days li.active::before{
+            background:  #90ee90;
+        }
+        .days li:not(.active):hover::before{
+            background: #f2f2f2;
+        }
+
+        .slot.weeks {
+            list-style-type: none;
+            display: flex;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .slot.weeks li { 
+            padding-left: 5px;
+            padding-right: 55px;
+            margin: 0;
+            text-align: center;
+            width: 100px;
+        }
+
+        .slot.weeks p {
+            margin: 0;
+            margin-top: 3px;
+        }
+
+        .slot-time {
+            display: flex;
+            padding-left: 50px;
+        }
+
+        .time {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.07rem;
+        }
+
+        .time li {
+            width: 70px;
+            background-color: #90ee90;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .time li:hover{
+            background-color: #c3f550;
+        }
+
+
+        .book{
+            padding: 80px;
+
+          
+        }
+
+        .book input{
+            margin: 10px 0px;
+            padding: 10px;
+            width: 80%;
+        }
+
+        .book textarea{
+            margin: 10px 0px;
+            width: 83%;
+            height: 90px;
+        }
+
+        .book form{
+           
+            width: 480px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;;
+        }
+
+        .book button{
+            padding: 20px;
+           border: none;
+           border-radius: 5px;
+           margin-right: 10px;
+           width: 200px;
+           font-size: 1.2rem;
+           cursor: pointer;
+
+        }
+
+        #btn-book{
+            background-color: #32cd32;
+            color: white;
+          margin-bottom: 20px;
+
+        }
+
+        .all-cont{
+            display: flex;
+        }
+
+
+
+
+    </style>
+    <div class="all-cont">
+        <div class="navbar">
+        
+            <ul class="nav">
+                <li id="menu"><h3>Menu</h3></li>
+                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/QWPPJPj?editors=1010"><li id="contact">Contact us</li></a>
+                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/GRLLYYO"><li>Subscribe</li></a>
+                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/YzMMRyE"><li>About us</li></a>
+            <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/oNOOaVB?editors=1010"><li>Sign in</li></a>
+            </ul>
+        </div>
+
+        <div class="all-txt">
+    <header>
+        <img src="https://images5.alphacoders.com/135/thumb-1920-1354013.png" alt="" height="200px" width="100%"; style="object-fit:cover">
+    </header>
+    <div class="container">
+    <div class="wrapper">
+        <header>
+            <span class="prevNext" id="prev"><i class="fas fa-chevron-left"></i></span>
+            <p class="curr-date"></p>
+            <span class="prevNext" id="next"><i class="fas fa-chevron-right"></i></span>
+        </header>
+        <div class="calendar">
+            <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
     </div>
-    <!-- Repetați această structură pentru celelalte luni -->
-  </div>
+    <div class="wrapper-sched">
+        <div class="sched-slot">
+            <ul class="slot weeks"></ul>
+        </div>
+        <div class="slot-time">
+            <ul class="time">
+                <li>9:00AM</li>
+                <li>10:10AM</li>
+                <li>11:00AM</li>
+                <li>2:00PM</li>
+            </ul>
+            <ul class="time">
+                <li>9:30AM</li>
+                <li>10:30AM</li>
+                <li>12:00PM</li>
+                <li>2:30PM</li>
+            </ul>
+            <ul class="time">
+                <li>9:45AM</li>
+                <li>10:50AM</li>
+                <li>12:30AM</li>
+                <li>3:00PM</li>
+            </ul>
+            <ul class="time">
+                <li>10:00AM</li>
+                <li>11:10AM</li>
+                <li>1:00PM</li>
+                <li>3:30PM</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const januaryItems = document.getElementById("january-items");
+<div class="book">
+    
+    <form action="">
+        <label>Name</label><br>
+        <input type="text"><br>
+        <label>Email Address</label><br>
+        <input type="email"><br>
+        <label >Phone Number</label><br>
+        <input type="tel" maxlength="11"><br>
+        <label>Reasons for visit</label><br>
+        <textarea name="" id="" cols="30" rows="10"></textarea><br>
+        <button id="btn-book">Book Now</button>
+        <button id="btn-cancel">Cancel</button>
+    </form>
+</div>
+</div>
+</div>
 
-      // Funcție pentru a adăuga un element în ianuarie
-      function addItemToJanuary(imageUrl, text) {
-        const item = document.createElement("div");
-        item.classList.add("item");
 
-        const img = document.createElement("img");
-        img.src = imageUrl;
-        item.appendChild(img);
 
-        const p = document.createElement("p");
-        p.textContent = text;
-        item.appendChild(p);
+    <script>
+        const days = document.querySelector(".days");
+        const currentDate = document.querySelector(".curr-date");
+        const prevNext = document.querySelectorAll(".prevNext");
 
-        januaryItems.appendChild(item);
-      }
+        let date = new Date();
+        let currYear = date.getFullYear();
+        let currMonth = date.getMonth();
 
-      // Exemplu de adăugare a unui element în ianuarie
-      addItemToJanuary("https://exemplu.com/imagine.jpg", "Text de exemplu");
-    });
-  </script>
+        const months = ["January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"];
+
+        const newCalendar = () => {
+            let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay();
+            let lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate();
+            let lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay();
+            let lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
+            let liTag = "";
+
+            for (let i = firstDayOfMonth; i > 0; i--) {
+                liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
+            }
+
+            for (let i = 1; i <= lastDateOfMonth; i++) {
+                let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
+                liTag += `<li class="${isToday}">${i}</li>`;
+            }
+
+            for (let i = lastDayOfMonth; i < 6; i++) {
+                liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
+            }
+
+            currentDate.innerText = `${months[currMonth]} ${currYear}`;
+            days.innerHTML = liTag;
+        }
+
+        newCalendar();
+
+        prevNext.forEach(icon => {
+            icon.addEventListener("click", () => {
+                currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+
+                if (currMonth < 0 || currMonth > 11) {
+                    date = new Date(currYear, currMonth, new Date().getDate());
+                    currYear = date.getFullYear();
+                    currMonth = date.getMonth();
+                } else {
+                    date = new Date();
+                }
+                newCalendar();
+            });
+        });
+    </script>
 </body>
 </html>
