@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar cu elemente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .calendar {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .month {
+      width: 200px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .item {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item img {
+      max-width: 80px;
+      max-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="month" id="january">
+      <h2>January</h2>
+      <div class="items" id="january-items"></div>
+    </div>
+    <!-- Repetați această structură pentru celelalte luni -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const januaryItems = document.getElementById("january-items");
+
+      // Funcție pentru a adăuga un element în ianuarie
+      function addItemToJanuary(imageUrl, text) {
+        const item = document.createElement("div");
+        item.classList.add("item");
+
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        item.appendChild(img);
+
+        const p = document.createElement("p");
+        p.textContent = text;
+        item.appendChild(p);
+
+        januaryItems.appendChild(item);
+      }
+
+      // Exemplu de adăugare a unui element în ianuarie
+      addItemToJanuary("https://exemplu.com/imagine.jpg", "Text de exemplu");
+    });
+  </script>
+</body>
+</html>
