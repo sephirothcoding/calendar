@@ -1,72 +1,26 @@
-<html lang="en" data-lt-installed="true"><head>
+<!DOCTYPE html>
+<html lang="en" data-lt-installed="true">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
     <style>
         body{
             margin: 0;
             padding: 0;
             font-family: 'Source Sans Pro', sans-serif;
-
-            
         }
-
-        .navbar{
-            
-            display: inline-block;
-            max-width: 500px;
-            width: 200px;
-            height: auto;
-            background-color: #192734;
-            color: white;
-        }
-        .nav{
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        
-
-        .nav li{ 
-    
-            padding: 30px 20px 30px;
-            border-bottom: 1px solid #bfbfbf;
-            font-size: 20px;
-        }
-
-        
-
-        #menu{
-            font-size: 25px;
-            border-bottom: none;
-            background-color: #15202b;
-            padding: 10px;
-            padding-left: 20px;
-        }
-
-        a{
-            color: white;
-            text-decoration: none;
-        }
-
 
         .container {
             display: flex;
             flex-wrap: wrap;
             background-color: #f9efff;
             justify-content: center;
-            
-            
         }
-
 
         .all-txt{
             width: 90%;
-            
         }
 
         .wrapper{
@@ -79,10 +33,8 @@
             text-align: center;
             padding: 50px;
             padding-top: 50px;
-           
             border-radius: 3%;
         }
-
 
         .wrapper header{
             display: flex;
@@ -106,14 +58,11 @@
         header .curr-date{
             font-size: 1.45rem;
             font-weight: 600;
-            
         }
 
         .calendar{
-            
             padding: 20px;
-          padding-bottom: 10px;
-            
+            padding-bottom: 10px;
         }
 
         .calendar ul{
@@ -155,7 +104,6 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
-
 
         .days li.inactive{
             color: #aaa;
@@ -217,11 +165,8 @@
             background-color: #c3f550;
         }
 
-
         .book{
             padding: 80px;
-
-          
         }
 
         .book input{
@@ -237,12 +182,11 @@
         }
 
         .book form{
-           
             width: 480px;
             display: block;
             margin-left: auto;
             margin-right: auto;
-            width: 50%;;
+            width: 50%;
         }
 
         .book button{
@@ -253,102 +197,84 @@
            width: 200px;
            font-size: 1.2rem;
            cursor: pointer;
-
         }
 
         #btn-book{
             background-color: #32cd32;
             color: white;
-          margin-bottom: 20px;
-
+            margin-bottom: 20px;
         }
 
         .all-cont{
             display: flex;
         }
-
-
-
-
     </style>
+</head>
+<body>
     <div class="all-cont">
-        <div class="navbar">
-        
-            <ul class="nav">
-                <li id="menu"><h3>Menu</h3></li>
-                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/QWPPJPj?editors=1010"><li id="contact">Contact us</li></a>
-                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/GRLLYYO"><li>Subscribe</li></a>
-                <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/YzMMRyE"><li>About us</li></a>
-            <a href="https://codepen.io/KATHLEEN-BELTRAN/pen/oNOOaVB?editors=1010"><li>Sign in</li></a>
-            </ul>
-        </div>
-
         <div class="all-txt">
-    <header>
-        <img src="https://images5.alphacoders.com/135/thumb-1920-1354013.png" alt="" height="200px" width="100%" ;="" style="object-fit:cover">
-    </header>
-    <div class="container">
-    <div class="wrapper">
-        <header>
-            <span class="prevNext" id="prev"><i class="fas fa-chevron-left"></i></span>
-            <p class="curr-date">May 2024</p>
-            <span class="prevNext" id="next"><i class="fas fa-chevron-right"></i></span>
-        </header>
-        <div class="calendar">
-            <ul class="weeks">
-                <li>Sun</li>
-                <li>Mon</li>
-                <li>Tue</li>
-                <li>Wed</li>
-                <li>Thu</li>
-                <li>Fri</li>
-                <li>Sat</li>
-            </ul>
-            <ul class="days"><li class="inactive">28</li><li class="inactive">29</li><li class="inactive">30</li><li class="">1</li><li class="active">2</li><li class="">3</li><li class="">4</li><li class="">5</li><li class="">6</li><li class="">7</li><li class="">8</li><li class="">9</li><li class="">10</li><li class="">11</li><li class="">12</li><li class="">13</li><li class="">14</li><li class="">15</li><li class="">16</li><li class="">17</li><li class="">18</li><li class="">19</li><li class="">20</li><li class="">21</li><li class="">22</li><li class="">23</li><li class="">24</li><li class="">25</li><li class="">26</li><li class="">27</li><li class="">28</li><li class="">29</li><li class="">30</li><li class="">31</li><li class="inactive">1</li></ul>
-        <div id="extwaiokist" style="display:none" v="fljme" q="5c78d3e8" c="634.2" i="640" u="24.71" s="04272401" sg="svr_09102316-ga_04272401-bai_04252415" d="0" w="false" e="}" a="2" m="BMe=" vn="3spel"><div id="extwaigglbit" style="display:none" v="fljme" q="5c78d3e8" c="634.2" i="640" u="24.71" s="04272401" sg="svr_09102316-ga_04272401-bai_04252415" d="0" w="false" e="}" a="2" m="BMe="></div></div></div>
-    </div>
-    <div class="wrapper-sched">
-        <div class="sched-slot">
-            <ul class="slot weeks"></ul>
+            <header>
+                <img src="https://images5.alphacoders.com/135/thumb-1920-1354013.png" alt="" height="200px" width="100%" ;="" style="object-fit:cover">
+            </header>
+            <div class="container">
+                <div class="wrapper">
+                    <header>
+                        <span class="prevNext" id="prev"><i class="fas fa-chevron-left"></i></span>
+                        <p class="curr-date">May 2024</p>
+                        <span class="prevNext" id="next"><i class="fas fa-chevron-right"></i></span>
+                    </header>
+                    <div class="calendar">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days">
+                            <!-- Days will be dynamically generated -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="wrapper-sched">
+                    <div class="sched-slot">
+                        <ul class="slot weeks"></ul>
+                    </div>
+                    <div class="slot-time">
+                        <ul class="time">
+                            <li>namegrad</li>
+                            <li>namecolor</li>
+                            <li>11:00AM</li>
+                            <li>2:00PM</li>
+                        </ul>
+                        <ul class="time">
+                            <li>9:30AM</li>
+                            <li>10:30AM</li>
+                            <li>12:00PM</li>
+                            <li>2:30PM</li>
+                        </ul>
+                        <ul class="time">
+                            <li>9:45AM</li>
+                            <li>10:50AM</li>
+                            <li>12:30AM</li>
+                            <li>3:00PM</li>
+                        </ul>
+                        <ul class="time">
+                            <li>10:00AM</li>
+                            <li>11:10AM</li>
+                            <li>1:00PM</li>
+                            <li>3:30PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="book">
+                <!-- Form for booking -->
+            </div>
         </div>
-        <div class="slot-time">
-            <ul class="time">
-                <li>namegrad</li>
-                <li>namecolor</li>
-                <li>11:00AM</li>
-                <li>2:00PM</li>
-            </ul>
-            <ul class="time">
-                <li>9:30AM</li>
-                <li>10:30AM</li>
-                <li>12:00PM</li>
-                <li>2:30PM</li>
-            </ul>
-            <ul class="time">
-                <li>9:45AM</li>
-                <li>10:50AM</li>
-                <li>12:30AM</li>
-                <li>3:00PM</li>
-            </ul>
-            <ul class="time">
-                <li>10:00AM</li>
-                <li>11:10AM</li>
-                <li>1:00PM</li>
-                <li>3:30PM</li>
-            </ul>
-        </div>
     </div>
-</div>
-
-<div class="book">
-    
-    
-</div>
-</div>
-</div>
-
-
-
     <script>
         const days = document.querySelector(".days");
         const currentDate = document.querySelector(".curr-date");
@@ -402,6 +328,5 @@
             });
         });
     </script>
-
-
-</body></html>
+</body>
+</html>
